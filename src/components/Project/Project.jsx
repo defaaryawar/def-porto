@@ -49,7 +49,7 @@ export default function Project() {
           <h2 className="text-3xl text-color-secondary mb-10 text-center select-none font-bold">My Projects</h2>
 
           {/* Grid untuk menata kartu */}
-          <div className="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0 justify-center items-center">
+          <div className="mt-4 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0 justify-center items-center px-10 md:px-0">
             {callouts.map((callout) => {
               const { inView, ref } = useInView(); // Ambil status inView untuk setiap card
 

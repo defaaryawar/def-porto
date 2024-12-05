@@ -7,7 +7,7 @@ const About = () => {
     const { inView, sectionRef } = useInView(); // Menggunakan hook
 
     return (
-        <section className="bg-color-primary text-gray-800 pb-36" ref={sectionRef}>
+        <section className="bg-color-primary text-gray-800 pb-24" ref={sectionRef}>
             <div className="pb-20">
                 <span className="flex items-center w-full">
                     <span className="h-px flex-1 bg-color-secondary"></span>
@@ -43,7 +43,7 @@ const About = () => {
 
                     {/* Deskripsi Diri */}
                     <motion.div
-                        className="w-full flex flex-col justify-center text-left"
+                        className="w-full flex flex-col justify-center text-justify md:px-0 px-12"
                         initial={{ opacity: 0, x: 100 }}
                         animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 100 }}
                         transition={{ duration: 1 }}

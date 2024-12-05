@@ -14,7 +14,7 @@ const Statistik = () => {
             <h2 className="text-3xl font-bold text-color-primary mb-4">My Skills</h2>
 
             {/* Container for 3 columns of progress bars */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-full px-40" ref={ref}>
+            <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-3 gap-6 w-full max-w-full md:px-40 sm:px-20 px-4" ref={ref}>
                 {skills.map((skill, index) => (
                     <motion.div
                         key={index}
