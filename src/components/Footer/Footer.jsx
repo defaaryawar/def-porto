@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaTwitter, FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
+import { FaTwitter, FaFacebook, FaLinkedin, FaGithub, FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { useState, useEffect, useRef } from "react";
 
 const Footer = () => {
@@ -57,25 +57,25 @@ const Footer = () => {
           <div className="grid grid-flow-col gap-4">
             {/* Twitter Icon */}
             <motion.a
-              href="https://twitter.com/username" // Ganti dengan URL profil Twittermu
+              href="https://www.instagram.com/defaaryawar_13" // Ganti dengan URL profil Twittermu
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 300, duration: 0.8 }}
             >
-              <FaTwitter size={24} className="text-color-secondary" />
+              <FaInstagram size={24} className="text-color-secondary" />
             </motion.a>
             {/* Facebook Icon */}
             <motion.a
-              href="https://facebook.com/username" // Ganti dengan URL profil Facebookmu
+              href="https://wa.me/6281219147116?text=Halo%2C%20saya%20tertarik%20untuk%20tau%20lebih%20lanjut%20tentang%20Anda." // Ganti dengan URL profil Facebookmu
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.9 }}
               transition={{ type: "spring", stiffness: 300, duration: 0.8 }}
             >
-              <FaFacebook size={24} className="text-color-secondary" />
+              <FaWhatsapp size={24} className="text-color-secondary" />
             </motion.a>
             {/* LinkedIn Icon */}
             <motion.a

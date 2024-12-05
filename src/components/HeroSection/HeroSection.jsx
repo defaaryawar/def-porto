@@ -3,16 +3,17 @@
 import { motion } from "framer-motion";
 import { FaInstagram, FaLinkedin, FaGithub, FaWhatsapp } from "react-icons/fa"; // Import icon
 import Typewriter from 'typewriter-effect'; // Import typewriter-effect library
+import { scrollToSection } from "@/utils/scrollUtils"
 
 const HeroSection = () => {
     return (
-        <div className="hero min-h-screen px-16 bg-transparent w-full select-none md:mb-0 mb-20">
+        <div className="hero min-h-screen md:px-16 px-7 bg-transparent w-full select-none md:mb-0 mb-20">
             <div className="hero-content flex-col lg:flex-row gap-10 justify-center items-center"> {/* Atur konten ke tengah dengan justify-center dan items-center */}
 
                 {/* Gambar dengan efek bulat dan animasi hover */}
                 <motion.img
                     src="./images/profil.jpeg"
-                    className="max-w-xs rounded-full shadow-2xl transition-transform duration-300 ease-in-out border-2 border-color-secondary"
+                    className="lg:max-w-xs md:w-96 w-64 rounded-full shadow-2xl transition-transform duration-300 ease-in-out border-2 border-color-secondary"
                     initial={{ opacity: 0, x: -100 }} // Animasi masuk dari kiri
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: 0.3 }}
@@ -48,17 +49,15 @@ const HeroSection = () => {
                     </motion.h1>
 
                     <motion.p
-                        className="py-6 text-color-primary select-none text-justify md:justify-start sm:justify-start"
+                        className="py-6 text-color-primary select-none text-justify md:justify-start sm:justify-start text-lg"
                         initial={{ opacity: 0, x: 100 }} // Animasi masuk dari kanan
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, delay: 0.4 }}
                     >
-                        As a graduate in Computer Engineering from <span className="text-color-secondary font-mono font-bold">Budi Luhur University</span>, specializing in Cyber Security, I am passionate about<span className="text-color-secondary font-mono font-bold"> web development</span>. My programming journey started in college and has been continuously fueled by learning from online resources and social media. I have gained proficiency in various programming languages such as <span className="text-color-secondary font-mono font-bold">HTML, CSS, PHP, JavaScript, and frameworks like Tailwind CSS, Next.js, React.js, and Bootstrap.</span>
+                        As a graduate in Computer Engineering from <span className="text-color-secondary font-mono font-bold">Budi Luhur University</span>, specializing in Cyber Security, I am passionate about<span className="text-color-secondary font-mono font-bold"> web development</span>. My programming journey started in college and has been continuously fueled by learning from online resources and social media. I have gained proficiency in various programming languages such as <span className="text-color-secondary font-mono font-bold">HTML, CSS, PHP, JavaScript, and frameworks like Tailwind CSS, Next.js, React.js, and Bootstrap. </span>
 
                         Driven by a relentless desire to learn and innovate, I am committed to continually sharpening my skills to become a trusted and proficient programmer capable of delivering the best solutions for every project I undertake.
                     </motion.p>
-
-
 
                     <motion.button
                         className="bg-transparent p-2 rounded-md border-2 border-color-secondary hover:scale-110 text-color-primary"
@@ -66,6 +65,7 @@ const HeroSection = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.2 }}
                         whileHover={{ scale: 1.1 }}
+                        onClick={() => scrollToSection("about")}
                     >
                         Learn More!
                     </motion.button>
@@ -111,7 +111,8 @@ const HeroSection = () => {
                             transition={{ duration: 0.8, delay: 0.9 }} // Animasi halus
                             whileHover={{ scale: 1.3 }}
                         >
-                            <a href="https://wa.me" target="_blank" rel="noopener noreferrer">
+                            <a href="https://wa.me/6281219147116?text=Halo%2C%20saya%20tertarik%20untuk%20tau%20lebih%20lanjut%20tentang%20Anda.
+                                " target="_blank" rel="noopener noreferrer">
                                 <FaWhatsapp className="text-3xl hover:text-color-secondary transition duration-300" />
                             </a>
                         </motion.div>

@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useInView } from "./AboutLogika"; // Import hook custom
+import { useInView } from "./AboutLogika";
+import { scrollToSection } from "@/utils/scrollUtils"; // Import hook custom
 
 const About = () => {
     const { inView, sectionRef } = useInView(); // Menggunakan hook
@@ -23,7 +24,7 @@ const About = () => {
                     Who Am I?
                 </motion.h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {/* Gambar Profil dengan Animasi */}
                     <motion.div
                         className="w-full flex justify-center items-center"
@@ -31,7 +32,7 @@ const About = () => {
                         animate={{ opacity: inView ? 1 : 0, scale: inView ? 1 : 0.8 }}
                         transition={{ duration: 1 }}
                     >
-                        <div className="w-64 h-64 rounded-full flex items-center select-none justify-center shadow-xl border-8 border-color-secondary overflow-hidden">
+                        <div className="lg:max-w-xs md:w-96 w-64 rounded-full flex items-center select-none justify-center shadow-xl border-8 border-color-secondary overflow-hidden">
                             {/* Gambar Profil */}
                             <img
                                 src="./images/profil.jpeg"
@@ -43,7 +44,7 @@ const About = () => {
 
                     {/* Deskripsi Diri */}
                     <motion.div
-                        className="w-full flex flex-col justify-center text-justify md:px-0 px-12"
+                        className="w-full flex flex-col justify-center text-justify md:px-16 px-12 md:mt-0 mt-6 sm:mt-0 lg:mt-0"
                         initial={{ opacity: 0, x: 100 }}
                         animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 100 }}
                         transition={{ duration: 1 }}
@@ -59,11 +60,11 @@ const About = () => {
                         </p>
 
                         <motion.a
-                            href="#contact"
-                            className="inline-block bg-transparent border-2 border-color-secondary text-color-secondary py-3 px-8 rounded-full mt-8 hover:bg-color-secondary hover:text-color-primary transition-all duration-300 font-bold"
+                            className="cursor-pointer inline-block bg-transparent border-2 border-color-secondary text-color-secondary py-3 px-8 rounded-full mt-8 hover:bg-color-secondary hover:text-color-primary transition-all duration-300 font-bold"
                             initial={{ opacity: 0, y: 100 }}
                             animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 100 }}
                             transition={{ duration: 1, delay: 0.5 }}
+                            onClick={() => scrollToSection("hero")}
                         >
                             Contact Me!
                         </motion.a>
