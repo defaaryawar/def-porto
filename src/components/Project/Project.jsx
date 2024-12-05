@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 const callouts = [
   {
     imageSrc: './images/def-anime.png',
-    imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
+    imageAlt: 'def-animelist.',
     href: 'https://def-anime.vercel.app/', // Ganti dengan link URL proyek yang sesungguhnya
   },
 ];
