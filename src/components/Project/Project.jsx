@@ -6,9 +6,9 @@ import { useState, useEffect, useRef } from "react";
 // Data callouts yang telah disesuaikan
 const callouts = [
   {
-    imageSrc: './images/web-anime-def.png',
+    imageSrc: './images/def-anime.png',
     imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
-    href: 'https://example.com', // Ganti dengan link URL proyek yang sesungguhnya
+    href: 'https://def-anime.vercel.app/', // Ganti dengan link URL proyek yang sesungguhnya
   },
 ];
 
