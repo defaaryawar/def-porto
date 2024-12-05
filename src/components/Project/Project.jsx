@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
 // Data callouts yang telah disesuaikan
 const callouts = [
   {
-    imageSrc: './images/def-anime.png',
+    imageSrc: './images/web-anime.jpeg',
     imageAlt: 'def-animelist.',
     href: 'https://def-anime.vercel.app/', // Ganti dengan link URL proyek yang sesungguhnya
   },
