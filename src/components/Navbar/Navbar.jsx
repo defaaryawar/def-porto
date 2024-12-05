@@ -19,7 +19,7 @@ const Navbar = () => {
 
                 {/* Menu Navigasi */}
                 <div className="lg:flex">
-                    <ul className="flex flex-row sm:flex-row md:flex-row lg:flex-row gap-5 lg:gap-8 cursor-pointer px-1 py-2 lg:px-0 items-center justify-center font-medium text-base-100 md:px-11 sm:text-xs md:text-xs lg:text-sm text-sm">
+                    <ul className="flex flex-row sm:flex-row md:flex-row lg:flex-row gap-5 lg:gap-8 cursor-pointer px-1 py-2 lg:px-0 items-center justify-center font-medium text-color-primary md:px-11 sm:text-xs md:text-xs lg:text-sm text-sm">
                         {/* Home */}
                         <li className="hover:text-color-secondary">
                             <Link href='#hero' className="navbar-link">Home</Link>

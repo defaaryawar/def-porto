@@ -7,7 +7,7 @@ const About = () => {
     const { inView, sectionRef } = useInView(); // Menggunakan hook
 
     return (
-        <section className="bg-base-100 text-gray-800 pb-36" ref={sectionRef}>
+        <section className="bg-color-primary text-gray-800 pb-36" ref={sectionRef}>
             <div className="pb-20">
                 <span className="flex items-center w-full">
                     <span className="h-px flex-1 bg-color-secondary"></span>

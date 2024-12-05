@@ -104,7 +104,7 @@ const Footer = () => {
 
         {/* Footer Copyright */}
         <aside>
-          <p className="text-base-100 font-bold select-none">
+          <p className="text-color-primary font-bold select-none">
             Copyright © {new Date().getFullYear()} - All right reserved by Defaaryawar
           </p>
         </aside>
