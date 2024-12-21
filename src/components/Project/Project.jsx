@@ -11,8 +11,8 @@ const callouts = [
     technologies: ['Next.js', 'Tailwind CSS', 'Daisy UI', 'JavaScript', 'API'],
   },
   {
-    imageSrc: './images/web-deflix.jpeg',
-    imageAlt: 'def-animelist.',
+    imageSrc: './images/deflix.jpeg',
+    imageAlt: 'deflix.',
     href: 'https://deflix-three.vercel.app/',
     technologies: ['NextJS', 'react' , 'Node.js', 'Tailwind CSS', 'API', 'NestJS', 'Postgresql', 'CSS'],
   },
