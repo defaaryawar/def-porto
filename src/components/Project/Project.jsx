@@ -11,7 +11,7 @@ const callouts = [
     technologies: ['Next.js', 'Tailwind CSS', 'Daisy UI', 'JavaScript', 'API'],
   },
   {
-    imageSrc: './images/deflix.jpeg',
+    imageSrc: './images/public/images/deflix.jpeg',
     imageAlt: 'deflix.',
     href: 'https://deflix-three.vercel.app/',
     technologies: ['NextJS', 'react' , 'Node.js', 'Tailwind CSS', 'API', 'NestJS', 'Postgresql', 'CSS'],
@@ -84,7 +84,7 @@ export default function Project() {
                       {/* Menampilkan teknologi proyek */}
                       <div className="flex text-sm mt-2">
                         {callout.technologies.map((tech, index) => (
-                          <p key={index}>{tech}</p>
+                          <p key={index}>{tech}, </p>
                         ))}
                       </div>
                       <a
