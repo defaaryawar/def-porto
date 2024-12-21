@@ -5,16 +5,16 @@ import { useState, useEffect, useRef } from "react";
 
 const callouts = [
   {
-    imageSrc: './images/web-anime.jpeg',
+    imageSrc: './images/anime.jpeg',
     imageAlt: 'def-animelist.',
     href: 'https://def-anime.vercel.app/',
-    technologies: ['Next.js ', 'Tailwind CSS ', 'Daisy UI ', 'JavaScript ', 'API '],
+    technologies: ['Next.js', 'Tailwind CSS', 'Daisy UI', 'JavaScript', 'API'],
   },
   {
     imageSrc: './images/deflix.jpeg',
     imageAlt: 'deflix.',
     href: 'https://deflix-three.vercel.app/',
-    technologies: ['NextJS ', 'react ' , 'Node.js ', 'Tailwind CSS ', 'API ', 'NestJS ', 'Postgresql ', 'CSS '],
+    technologies: ['NextJS', 'React', 'Node.js', 'Tailwind CSS', 'API', 'NestJS', 'PostgreSQL', 'CSS'],
   },
 ];
 
@@ -74,7 +74,7 @@ export default function Project() {
                   <motion.img
                     alt={callout.imageAlt}
                     src={callout.imageSrc}
-                    className="w-full h-56 rounded-lg object-contain group-hover:opacity-75 transition-opacity duration-300" // Mengubah tinggi gambar supaya memenuhi card
+                    className="w-full h-72 rounded-lg object-contain group-hover:opacity-75 transition-opacity duration-300" // Mengubah tinggi gambar supaya memenuhi card
                   />
                   
                   {/* Overlay saat di-hover */}
@@ -82,9 +82,9 @@ export default function Project() {
                     <div className="text-center text-white px-6 py-4">
                       <p className="text-lg font-semibold text-color-secondary">This project is built with:</p>
                       {/* Menampilkan teknologi proyek */}
-                      <div className="flex text-sm mt-2">
+                      <div className="text-sm mt-2">
                         {callout.technologies.map((tech, index) => (
-                          <p key={index}>{tech}, </p>
+                          <span key={index} className="mr-1">{tech}{index < callout.technologies.length - 1 && ','}</span>
                         ))}
                       </div>
                       <a
