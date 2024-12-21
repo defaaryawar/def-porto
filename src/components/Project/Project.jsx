@@ -82,11 +82,11 @@ export default function Project() {
                     <div className="text-center text-white px-6 py-4">
                       <p className="text-lg font-semibold text-color-secondary">This project is built with:</p>
                       {/* Menampilkan teknologi proyek */}
-                      <ul className="text-sm mt-2">
+                      <div className="flex text-sm mt-2">
                         {callout.technologies.map((tech, index) => (
-                          <li key={index}>{tech}</li>
+                          <p key={index}>{tech}</p>
                         ))}
-                      </ul>
+                      </div>
                       <a
                         href={callout.href}
                         target="_blank"
