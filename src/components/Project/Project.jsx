@@ -74,7 +74,7 @@ export default function Project() {
                   <motion.img
                     alt={callout.imageAlt}
                     src={callout.imageSrc}
-                    className="w-full h-full rounded-lg object-cover group-hover:opacity-75 transition-opacity duration-300" // Mengubah tinggi gambar supaya memenuhi card
+                    className="w-full h-56 rounded-lg object-contain group-hover:opacity-75 transition-opacity duration-300" // Mengubah tinggi gambar supaya memenuhi card
                   />
                   
                   {/* Overlay saat di-hover */}
