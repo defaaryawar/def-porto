@@ -3,12 +3,18 @@
 import { motion } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
-// Data callouts yang telah disesuaikan
 const callouts = [
   {
     imageSrc: './images/web-anime.jpeg',
     imageAlt: 'def-animelist.',
-    href: 'https://def-anime.vercel.app/', // Ganti dengan link URL proyek yang sesungguhnya
+    href: 'https://def-anime.vercel.app/',
+    technologies: ['Next.js', 'Tailwind CSS', 'Daisy UI', 'JavaScript', 'API'],
+  },
+  {
+    imageSrc: './images/web-deflix.jpeg',
+    imageAlt: 'def-animelist.',
+    href: 'https://deflix-three.vercel.app/',
+    technologies: ['NextJS', 'react' , 'Node.js', 'Tailwind CSS', 'API', 'NestJS', 'Postgresql', 'CSS'],
   },
 ];
 
@@ -75,7 +81,12 @@ export default function Project() {
                   <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 select-none rounded-lg">
                     <div className="text-center text-white px-6 py-4">
                       <p className="text-lg font-semibold text-color-secondary">This project is built with:</p>
-                      <p className="text-sm mt-2">Next.js, Tailwind CSS, Daisy UI, and JavaScript, API.</p>
+                      {/* Menampilkan teknologi proyek */}
+                      <ul className="text-sm mt-2">
+                        {callout.technologies.map((tech, index) => (
+                          <li key={index}>{tech}</li>
+                        ))}
+                      </ul>
                       <a
                         href={callout.href}
                         target="_blank"
