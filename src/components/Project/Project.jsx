@@ -8,13 +8,13 @@ const callouts = [
     imageSrc: './images/web-anime.jpeg',
     imageAlt: 'def-animelist.',
     href: 'https://def-anime.vercel.app/',
-    technologies: ['Next.js', 'Tailwind CSS', 'Daisy UI', 'JavaScript', 'API'],
+    technologies: ['Next.js ', 'Tailwind CSS ', 'Daisy UI ', 'JavaScript ', 'API '],
   },
   {
-    imageSrc: './images/public/images/deflix.jpeg',
+    imageSrc: './images/deflix.jpeg',
     imageAlt: 'deflix.',
     href: 'https://deflix-three.vercel.app/',
-    technologies: ['NextJS', 'react' , 'Node.js', 'Tailwind CSS', 'API', 'NestJS', 'Postgresql', 'CSS'],
+    technologies: ['NextJS ', 'react ' , 'Node.js ', 'Tailwind CSS ', 'API ', 'NestJS ', 'Postgresql ', 'CSS '],
   },
 ];
 
