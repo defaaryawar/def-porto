@@ -50,12 +50,12 @@ const useInView = () => {
 export default function Project() {
   return (
     <div className="bg-gray-100 py-16 justify-center items-center">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-4">
         <div className="mx-auto max-w-2xl sm:py-24 lg:max-w-none lg:py-4">
           <h2 className="text-3xl text-color-secondary mb-10 text-center select-none font-bold">My Projects</h2>
 
           {/* Grid untuk menata kartu */}
-          <div className="mt-4 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-8 lg:space-y-0 justify-center items-center px-10 md:px-0">
+          <div className="mt-4 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-10 lg:space-y-0 justify-center items-center px-10 md:px-0">
             {callouts.map((callout) => {
               const { inView, ref } = useInView(); // Ambil status inView untuk setiap card
 
