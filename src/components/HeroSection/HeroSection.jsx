@@ -73,48 +73,59 @@ const HeroSection = () => {
                     {/* Ikon Sosial Media */}
                     <div className="mt-6 flex space-x-6 justify-center md:justify-start text-color-primary"> {/* Ganti justify-start ke justify-center */}
                         <motion.div
-                            initial={{ opacity: 0, y: 50 }} // Mulai dari bawah
-                            animate={{ opacity: 1, y: 0 }} // Posisikan ke atas
-                            transition={{ duration: 0.8, delay: 0.6 }} // Animasi halus
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.6 }}
                             whileHover={{ scale: 1.3 }}
                         >
-                            <a href="https://www.instagram.com/defaaryawar_13" target="_blank" rel="noopener noreferrer">
+                            <button
+                                onClick={() => window.location.href = 'https://www.instagram.com/defaaryawar_13/'}
+                                className="cursor-pointer"
+                            >
                                 <FaInstagram className="text-3xl hover:text-color-secondary transition duration-300" />
-                            </a>
+                            </button>
                         </motion.div>
 
                         <motion.div
-                            initial={{ opacity: 0, y: 50 }} // Mulai dari bawah
-                            animate={{ opacity: 1, y: 0 }} // Posisikan ke atas
-                            transition={{ duration: 0.8, delay: 0.7 }} // Animasi halus
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.7 }}
                             whileHover={{ scale: 1.3 }}
                         >
-                            <a href="https://www.linkedin.com/in/defano-arya-wardhana-50ab11328/" target="_blank" rel="noopener noreferrer">
+                            <button
+                                onClick={() => window.location.href = 'https://www.linkedin.com/in/defano-arya-wardhana-50ab11328/'}
+                                className="cursor-pointer"
+                            >
                                 <FaLinkedin className="text-3xl hover:text-color-secondary transition duration-300" />
-                            </a>
+                            </button>
                         </motion.div>
 
                         <motion.div
-                            initial={{ opacity: 0, y: 50 }} // Mulai dari bawah
-                            animate={{ opacity: 1, y: 0 }} // Posisikan ke atas
-                            transition={{ duration: 0.8, delay: 0.8 }} // Animasi halus
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.8 }}
                             whileHover={{ scale: 1.3 }}
                         >
-                            <a href="https://github.com/defaaryawar" target="_blank" rel="noopener noreferrer">
+                            <button
+                                onClick={() => window.location.href = 'https://github.com/defaaryawar'}
+                                className="cursor-pointer"
+                            >
                                 <FaGithub className="text-3xl hover:text-color-secondary transition duration-300" />
-                            </a>
+                            </button>
                         </motion.div>
 
                         <motion.div
-                            initial={{ opacity: 0, y: 50 }} // Mulai dari bawah
-                            animate={{ opacity: 1, y: 0 }} // Posisikan ke atas
-                            transition={{ duration: 0.8, delay: 0.9 }} // Animasi halus
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.9 }}
                             whileHover={{ scale: 1.3 }}
                         >
-                            <a href="https://wa.me/6281219147116?text=Halo%2C%20saya%20tertarik%20untuk%20tau%20lebih%20lanjut%20tentang%20Anda.
-                                " target="_blank" rel="noopener noreferrer">
+                            <button
+                                onClick={() => window.location.href = 'https://wa.me/6281219147116?text=Halo%2C%20saya%20tertarik%20untuk%20tau%20lebih%20lanjut%20tentang%20Anda.'}
+                                className="cursor-pointer"
+                            >
                                 <FaWhatsapp className="text-3xl hover:text-color-secondary transition duration-300" />
-                            </a>
+                            </button>
                         </motion.div>
                     </div>
                 </div>

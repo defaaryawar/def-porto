@@ -33,7 +33,7 @@ const skills = [
   { label: "CSS", value: 85 },
   { label: "JavaScript", value: 80 },
   { label: "PHP", value: 70 },
-  { label: "React.js", value: 95 },
+  { label: "React.js", value: 90 },
   { label: "Next.js", value: 90 },
   { label: "MS Office", value: 75 },
   { label: "Canva", value: 80 },

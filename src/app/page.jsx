@@ -2,6 +2,7 @@ import HeroSection from "@/components/HeroSection/HeroSection";
 import About from "@/components/About/About";
 import Statistik from "@/components/Statistik/Statistik";
 import Project from "@/components/Project/Project";
+import ChatWithMe from "@/components/ChatWithMe/ChatWithMe";
 
 export default function Home() {
   return (
@@ -24,6 +25,10 @@ export default function Home() {
       {/* Project Section */}
       <section id="project">
         <Project />
+      </section>
+
+      <section>
+        <ChatWithMe />
       </section>
     </div>
   );
