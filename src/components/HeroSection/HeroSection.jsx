@@ -23,7 +23,7 @@ const HeroSection = () => {
                 {/* Konten teks dengan animasi masuk */}
                 <div className="mt-0 md:mt-4 lg:mt-0 text-color-secondary text-center md:text-start"> {/* Tambahkan text-center untuk menyesuaikan teks */}
                     <motion.h1
-                        className="lg:text-5xl md:4xl sm:2xl text-2xl font-bold select-none"
+                        className="lg:text-5xl md:4xl sm:3xl text-3xl font-bold select-none"
                         initial={{ opacity: 0, y: -100 }} // Animasi masuk dari atas
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.2 }}
@@ -54,7 +54,7 @@ const HeroSection = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, delay: 0.4 }}
                     >
-                        As a graduate in Computer Engineering from <span className="text-color-secondary font-mono font-bold">Budi Luhur University</span>, specializing in Cyber Security, I am passionate about<span className="text-color-secondary font-mono font-bold"> web development</span>. My programming journey started in college and has been continuously fueled by learning from online resources and social media. I have gained proficiency in various programming languages such as <span className="text-color-secondary font-mono font-bold">HTML, CSS, PHP, JavaScript, and frameworks like Tailwind CSS, Next.js, React.js, and Bootstrap. </span>
+                        As a graduate in Computer Engineering from <span className="text-color-secondary font-sans font-bold">Budi Luhur University</span>, specializing in Cyber Security, I am passionate about<span className="text-color-secondary font-sans font-bold"> web development</span>. My programming journey started in college and has been continuously fueled by learning from online resources and social media. I have gained proficiency in various programming languages such as <span className="text-color-secondary font-sans font-bold">HTML, CSS, PHP, JavaScript, and frameworks like Tailwind CSS, Next.js, React.js, and Bootstrap. </span>
 
                         Driven by a relentless desire to learn and innovate, I am committed to continually sharpening my skills to become a trusted and proficient programmer capable of delivering the best solutions for every project I undertake.
                     </motion.p>
