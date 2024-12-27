@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { FaWhatsapp } from "react-icons/fa";
 
 const ChatWithMe = () => {
     const [showChat, setShowChat] = useState(false);
@@ -26,20 +27,12 @@ const ChatWithMe = () => {
         <>
             {/* Tombol Chat dengan ikon pesan */}
             <div
-                className="fixed bottom-5 right-5 bg-color-secondary p-4 rounded-full shadow-lg cursor-pointer hover:bg-yellow-500 transition-all"
+                className="fixed bottom-5 right-5 bg-transparent p-3 rounded-full shadow-lg cursor-pointer hover:bg-color-secondary hover:text-gray-50 text-color-secondary transition-all border-2 border-color-secondary"
                 onClick={toggleChat}
                 title="Chat with me"
                 aria-label="Toggle chat"
             >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    fill="white"
-                    viewBox="0 0 24 24"
-                >
-                    <path d="M21 6c0-1.103-.897-2-2-2h-6v4h6c1.103 0 2-.897 2-2zm-8 6v4h-6v-4h6zm0 0h6v6c0 1.103-.897 2-2 2h-4v-4h-6c-1.103 0-2-.897-2-2v-6h6v4h4z" />
-                </svg>
+            <FaWhatsapp className="text-2xl"/>
             </div>
 
             {/* Popup Chat jika tombol ditekan */}
@@ -48,7 +41,7 @@ const ChatWithMe = () => {
                     <div className="flex justify-between items-center">
                         <h2 className="text-xl font-semibold">Chat with Me</h2>
                         <button
-                            className="text-xl text-gray-500 hover:text-gray-700"
+                            className="text-xl text-gray-500 hover:text-gray-700 font-semibold hover:scale-125 duration-300 transition-all"
                             onClick={closeChat}
                             aria-label="Close chat"
                         >
