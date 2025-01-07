@@ -43,28 +43,42 @@ const Navbar = () => {
                 </div>
 
                 {/* Menu Navigasi */}
-                <div className={`lg:flex md:flex-row ${isMenuOpen ? 'absolute top-full right-0 bg-gray-800/80 w-full p-5 transition-transform transform ease-in-out duration-300' : 'hidden md:flex'}`}>
-                    <ul className="flex flex-col sm:flex-row md:flex-row lg:flex-row gap-5 lg:gap-8 cursor-pointer py-2 lg:px-0 justify-start font-medium text-color-primary md:px-11 sm:text-lg md:text-sm lg:text-sm text-lg">
+                <div
+                    className={`lg:flex md:flex-row ${isMenuOpen ? 'absolute top-full right-0 bg-gray-800/80 w-full md:py-4 py-0 md:px-4 px-0 transition-transform transform ease-in-out duration-300' : 'hidden md:flex'}`}
+                >
+                    <ul className="flex flex-col w-full sm:flex-row md:flex-row lg:flex-row gap-5 lg:gap-8 md:mt-0 mt-2 cursor-pointer md:py-2 py-0 lg:px-0 font-medium md:normal-case uppercase text-color-primary md:px-11 sm:text-lg md:text-sm lg:text-sm text-md">
                         {/* Home */}
                         <li className="hover:text-color-secondary">
-                            <Link href="#hero" className="navbar-link" onClick={closeMenu}>Home</Link>
+                            <Link href="#hero" className="navbar-link md:px-0 px-4" onClick={closeMenu}>
+                                Home
+                            </Link>
                         </li>
+                        {/* Divider hanya muncul di mobile */}
+                        <hr className="border-gray-50 my-0 md:hidden w-full mx-0" />
                         {/* About */}
                         <li className="hover:text-color-secondary">
-                            <Link href="#about" className="navbar-link" onClick={closeMenu}>About</Link>
+                            <Link href="#about" className="navbar-link md:px-0 px-4" onClick={closeMenu}>About</Link>
                         </li>
+                        {/* Divider hanya muncul di mobile */}
+                        <hr className="border-gray-50 my-0 md:hidden w-full mx-0" />
                         {/* Skills */}
                         <li className="hover:text-color-secondary">
-                            <Link href="#skill" className="navbar-link" onClick={closeMenu}>Skills</Link>
+                            <Link href="#skill" className="navbar-link md:px-0 px-4" onClick={closeMenu}>Skills</Link>
                         </li>
+                        {/* Divider hanya muncul di mobile */}
+                        <hr className="border-gray-50 my-0 md:hidden w-full mx-0" />
                         {/* Project */}
                         <li className="hover:text-color-secondary">
-                            <Link href="#project" className="navbar-link" onClick={closeMenu}>Project</Link>
+                            <Link href="#project" className="navbar-link md:px-0 px-4" onClick={closeMenu}>Project</Link>
                         </li>
+                        {/* Divider hanya muncul di mobile */}
+                        <hr className="border-gray-50 my-0 md:hidden w-full mx-0" />
                         {/* Contact */}
                         <li className="hover:text-color-secondary">
-                            <Link href="#footer" className="navbar-link" onClick={closeMenu}>Contact</Link>
+                            <Link href="#footer" className="navbar-link md:px-0 px-4" onClick={closeMenu}>Contact</Link>
                         </li>
+                        {/* Divider hanya muncul di mobile */}
+                        <hr className="border-gray-50 my-0 md:hidden w-full mx-0" />
                     </ul>
                 </div>
             </div>
