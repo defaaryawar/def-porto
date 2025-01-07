@@ -60,7 +60,7 @@ const About = () => {
                         </p>
 
                         <motion.a
-                            className="cursor-pointer inline-block bg-transparent border-2 border-color-secondary text-color-secondary py-3 px-8 rounded-full mt-8 hover:bg-color-secondary hover:text-color-primary transition-all duration-300 font-bold"
+                            className="cursor-pointer select-none inline-block bg-transparent border-2 border-color-secondary text-color-secondary py-3 px-8 rounded-full mt-8 hover:bg-color-secondary hover:text-color-primary transition-all duration-300 font-bold"
                             initial={{ opacity: 0, y: 100 }}
                             animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 100 }}
                             transition={{ duration: 1, delay: 0.5 }}

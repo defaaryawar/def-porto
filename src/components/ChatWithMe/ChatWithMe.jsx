@@ -27,7 +27,7 @@ const ChatWithMe = () => {
         <>
             {/* Tombol Chat dengan ikon pesan */}
             <div
-                className="fixed bottom-5 right-5 bg-transparent p-3 rounded-full shadow-lg cursor-pointer hover:bg-color-secondary hover:text-gray-50 text-color-secondary transition-all border-2 border-color-secondary"
+                className="fixed bottom-5 right-5 md:bg-transparent bg-color-secondary p-3 rounded-full shadow-lg cursor-pointer md:hover:bg-color-secondary md:hover:text-gray-50 md:text-color-secondary text-gray-50 transition-all border-2 border-color-secondary"
                 onClick={toggleChat}
                 title="Chat with me"
                 aria-label="Toggle chat"
@@ -52,7 +52,7 @@ const ChatWithMe = () => {
                         <p className="text-sm text-gray-600">Feel free to ask me anything!</p>
                         {/* Implementasikan chat form atau API */}
                         <textarea
-                            className="w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-color-secondary"
+                            className="bg-white w-full p-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-color-secondary"
                             placeholder="Type your message..."
                             rows={5}
                             value={message}

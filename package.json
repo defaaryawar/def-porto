@@ -20,7 +20,9 @@
     "react-typewriter-effect": "^1.1.0",
     "rellax": "^1.12.1",
     "typed.js": "^2.1.0",
-    "typewriter-effect": "^2.21.0"
+    "typewriter-effect": "^2.21.0",
+    "watchpack": "^2.4.2",
+    "webpack": "^5.97.1"
   },
   "devDependencies": {
     "postcss": "^8",

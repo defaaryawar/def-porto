@@ -23,7 +23,7 @@ const HeroSection = () => {
                 {/* Konten teks dengan animasi masuk */}
                 <div className="mt-0 md:mt-4 lg:mt-0 text-color-secondary text-center md:text-start"> {/* Tambahkan text-center untuk menyesuaikan teks */}
                     <motion.h1
-                        className="lg:text-5xl md:4xl sm:3xl text-3xl font-bold select-none"
+                        className="lg:text-5xl md:4xl sm:3xl text-2xl font-bold select-none"
                         initial={{ opacity: 0, y: -100 }} // Animasi masuk dari atas
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 1, delay: 0.2 }}
