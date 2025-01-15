@@ -1,88 +1,161 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const [activeSection, setActiveSection] = useState("hero");
 
-    const toggleMenu = () => setIsMenuOpen(!isMenuOpen); // Mengatur status menu
-    const closeMenu = () => setIsMenuOpen(false); // Menutup menu setelah klik item
+    // Handle scroll effect
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+    const closeMenu = () => setIsMenuOpen(false);
+
+    const menuItems = [
+        { href: "#hero", label: "Home" },
+        { href: "#about", label: "About" },
+        { href: "#skill", label: "Skills" },
+        { href: "#project", label: "Project" },
+        { href: "#footer", label: "Contact" },
+    ];
+
+    // Framer Motion variants
+    const mobileMenuVariants = {
+        closed: {
+            opacity: 0,
+            height: 0,
+            transition: {
+                duration: 0.3,
+                ease: "easeInOut"
+            }
+        },
+        open: {
+            opacity: 1,
+            height: "auto",
+            transition: {
+                duration: 0.3,
+                ease: "easeInOut"
+            }
+        }
+    };
 
     return (
-        <>
-            {/* Navbar dengan efek sticky */}
-            <div className="sticky top-0 z-50 navbar bg-gray-800 bg-opacity-80 md:px-10 p-6 max-w-screen-4xl mx-auto flex flex-row items-center justify-between select-none">
-                <div className="flex items-center justify-between w-full">
-                    {/* Logo atau Nama */}
+        <nav
+            className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled
+                    ? "bg-slate-900/95 backdrop-blur-md shadow-lg"
+                    : "bg-transparent"
+                }`}
+        >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex items-center justify-between h-16">
+                    {/* Logo */}
                     <Link
                         href="/"
-                        className="cursor-pointer text-3xl font-bold text-color-secondary md:justify-start justify-center sm:text-sm md:text-xl lg:text-2xl"
+                        className="group flex items-center space-x-2"
                     >
-                        Portofolio.
+                        <span className="text-2xl font-bold bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
+                            Portofolio
+                            <span className="text-indigo-400">.</span>
+                        </span>
                     </Link>
 
-                    {/* Tombol hamburger hanya muncul di mobile */}
-                    <div className="md:hidden items-center">
+                    {/* Desktop Navigation */}
+                    <div className="hidden md:flex items-center space-x-8">
+                        {menuItems.map((item) => (
+                            <Link
+                                key={item.label}
+                                href={item.href}
+                                className={`text-sm font-medium transition-colors duration-200
+                                    ${activeSection === item.href.slice(1)
+                                        ? "text-indigo-400"
+                                        : "text-slate-200 hover:text-indigo-400"
+                                    }`}
+                                onClick={() => {
+                                    setActiveSection(item.href.slice(1));
+                                    closeMenu();
+                                }}
+                            >
+                                {item.label}
+                            </Link>
+                        ))}
+                    </div>
+
+                    {/* Mobile Menu Button */}
+                    <div className="md:hidden">
                         <button
-                            className="bg-transparent border-none text-white p-0 hover:bg-transparent"
                             onClick={toggleMenu}
+                            className="relative w-10 h-10 focus:outline-none"
+                            aria-label="Toggle menu"
                         >
-                            {/* Hamburger icon */}
-                            <div
-                                className={`w-8 h-1 bg-white my-2 transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2.5" : ""}`}
-                            />
-                            <div
-                                className={`w-8 h-1 bg-white my-2 transition-all duration-300 ${isMenuOpen ? "opacity-0" : ""}`}
-                            />
-                            <div
-                                className={`w-8 h-1 bg-white my-2 transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-2.5" : ""}`}
-                            />
+                            <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                <span
+                                    className={`block w-6 h-0.5 bg-slate-200 transition-all duration-300 mb-1.5
+                                        ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`}
+                                />
+                                <span
+                                    className={`block w-6 h-0.5 bg-slate-200 transition-all duration-300
+                                        ${isMenuOpen ? "opacity-0" : ""}`}
+                                />
+                                <span
+                                    className={`block w-6 h-0.5 bg-slate-200 transition-all duration-300 mt-1.5
+                                        ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+                                />
+                            </div>
                         </button>
                     </div>
                 </div>
-
-                {/* Menu Navigasi */}
-                <div
-                    className={`lg:flex md:flex-row ${isMenuOpen ? 'absolute top-full right-0 bg-gray-800/80 w-full md:py-4 py-0 md:px-4 px-0 transition-transform transform ease-in-out duration-300' : 'hidden md:flex'}`}
-                >
-                    <ul className="flex flex-col w-full sm:flex-row md:flex-row lg:flex-row gap-5 lg:gap-8 md:mt-0 mt-2 cursor-pointer md:py-2 py-0 lg:px-0 font-medium md:normal-case uppercase text-color-primary md:px-11 sm:text-lg md:text-sm lg:text-sm text-md">
-                        {/* Home */}
-                        <li className="hover:text-color-secondary">
-                            <Link href="#hero" className="navbar-link md:px-0 px-4" onClick={closeMenu}>
-                                Home
-                            </Link>
-                        </li>
-                        {/* Divider hanya muncul di mobile */}
-                        <hr className="border-gray-50 my-0 md:hidden w-full mx-0" />
-                        {/* About */}
-                        <li className="hover:text-color-secondary">
-                            <Link href="#about" className="navbar-link md:px-0 px-4" onClick={closeMenu}>About</Link>
-                        </li>
-                        {/* Divider hanya muncul di mobile */}
-                        <hr className="border-gray-50 my-0 md:hidden w-full mx-0" />
-                        {/* Skills */}
-                        <li className="hover:text-color-secondary">
-                            <Link href="#skill" className="navbar-link md:px-0 px-4" onClick={closeMenu}>Skills</Link>
-                        </li>
-                        {/* Divider hanya muncul di mobile */}
-                        <hr className="border-gray-50 my-0 md:hidden w-full mx-0" />
-                        {/* Project */}
-                        <li className="hover:text-color-secondary">
-                            <Link href="#project" className="navbar-link md:px-0 px-4" onClick={closeMenu}>Project</Link>
-                        </li>
-                        {/* Divider hanya muncul di mobile */}
-                        <hr className="border-gray-50 my-0 md:hidden w-full mx-0" />
-                        {/* Contact */}
-                        <li className="hover:text-color-secondary">
-                            <Link href="#footer" className="navbar-link md:px-0 px-4" onClick={closeMenu}>Contact</Link>
-                        </li>
-                        {/* Divider hanya muncul di mobile */}
-                        <hr className="border-gray-50 my-0 md:hidden w-full mx-0" />
-                    </ul>
-                </div>
             </div>
-        </>
+
+            {/* Mobile Navigation */}
+            <AnimatePresence>
+                {isMenuOpen && (
+                    <motion.div
+                        initial="closed"
+                        animate="open"
+                        exit="closed"
+                        variants={mobileMenuVariants}
+                        className="md:hidden bg-slate-900/95 backdrop-blur-md border-t border-slate-800"
+                    >
+                        <div className="px-4 pt-2 pb-4 space-y-1">
+                            {menuItems.map((item, index) => (
+                                <motion.div
+                                    key={item.label}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                >
+                                    <Link
+                                        href={item.href}
+                                        className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors duration-200
+                                            ${activeSection === item.href.slice(1)
+                                                ? "bg-indigo-400/10 text-indigo-400"
+                                                : "text-slate-200 active:bg-slate-800 md:hover:text-indigo-400"
+                                            }`}
+                                        onClick={() => {
+                                            setActiveSection(item.href.slice(1));
+                                            closeMenu();
+                                        }}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </nav>
     );
 };
 

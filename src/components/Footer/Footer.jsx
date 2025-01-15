@@ -1,21 +1,23 @@
-"use client";
+"use client"
 
 import { motion } from "framer-motion";
-import { FaTwitter, FaFacebook, FaLinkedin, FaGithub, FaWhatsapp, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { useState, useEffect, useRef } from "react";
 
 const Footer = () => {
   const [inView, setInView] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
   const footerRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setInView(true); // Set to true when footer is in view
+          setInView(true);
         }
       },
-      { threshold: 0.2 } // Trigger when 20% of the element is visible
+      { threshold: 0.2 }
     );
 
     if (footerRef.current) {
@@ -29,87 +31,152 @@ const Footer = () => {
     };
   }, []);
 
+  // Handle social media clicks with error handling
+  const handleSocialClick = (platform, url) => (e) => {
+    e.preventDefault();
+    
+    // Function to show toast message
+    const showToastMessage = (msg) => {
+      setToastMessage(msg);
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 3000);
+    };
+
+    // Encode the WhatsApp message properly
+    if (platform === 'whatsapp') {
+      const encodedMessage = encodeURIComponent('Halo, saya tertarik untuk tau lebih lanjut tentang Anda.');
+      url = `https://wa.me/6281219147116?text=${encodedMessage}`;
+    }
+
+    try {
+      // Always try to open in a new tab first
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } catch (error) {
+      // If that fails, show an error message
+      showToastMessage(`Couldn't open ${platform}. Please check your pop-up blocker settings.`);
+    }
+  };
+
+  const socialLinks = [
+    {
+      icon: FaInstagram,
+      href: 'https://www.instagram.com/defaaryawar_13',
+      color: '#E4405F',
+      platform: 'Instagram'
+    },
+    {
+      icon: FaWhatsapp,
+      href: '#',
+      color: '#25D366',
+      platform: 'whatsapp'
+    },
+    {
+      icon: FaLinkedin,
+      href: 'https://www.linkedin.com/in/defano-arya-wardhana-50ab11328/',
+      color: '#0A66C2',
+      platform: 'LinkedIn'
+    },
+    {
+      icon: FaGithub,
+      href: 'https://github.com/defaaryawar',
+      color: '#333',
+      platform: 'GitHub'
+    }
+  ];
+
   return (
-    <div className="py-4">
-      <footer
-        ref={footerRef}
-        className="footer footer-center bg-transparent text-base-content rounded p-10"
+    <footer ref={footerRef} className="relative py-8 sm:py-12">
+      {/* Toast Notification */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: showToast ? 1 : 0, y: showToast ? 0 : -20 }}
+        className="fixed top-4 right-4 z-50 bg-slate-800 text-white px-6 py-3 rounded-lg shadow-lg"
       >
-        {/* Navigasi dengan animasi masuk hanya saat halaman terlihat */}
-        <motion.nav
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-flow-col gap-4 text-color-secondary select-none"
-        >
-          <a className="link link-hover" href="#about">About us</a>
-          <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
-        </motion.nav>
+        {toastMessage}
+      </motion.div>
 
-        {/* Ikon Sosial Media dengan animasi hover */}
-        <motion.nav
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <div className="grid grid-flow-col gap-4">
-            {/* Twitter Icon */}
-            <motion.a
-              href="https://www.instagram.com/defaaryawar_13" // Ganti dengan URL profil Twittermu
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 300, duration: 0.8 }}
-            >
-              <FaInstagram size={24} className="text-color-secondary" />
-            </motion.a>
-            {/* Facebook Icon */}
-            <motion.a
-              href="https://wa.me/6281219147116?text=Halo%2C%20saya%20tertarik%20untuk%20tau%20lebih%20lanjut%20tentang%20Anda." // Ganti dengan URL profil Facebookmu
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 300, duration: 0.8 }}
-            >
-              <FaWhatsapp size={24} className="text-color-secondary" />
-            </motion.a>
-            {/* LinkedIn Icon */}
-            <motion.a
-              href="https://www.linkedin.com/in/defano-arya-wardhana-50ab11328/" 
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 300, duration: 0.8 }}
-            >
-              <FaLinkedin size={24} className="text-color-secondary" />
-            </motion.a>
-            {/* GitHub Icon */}
-            <motion.a
-              href="https://github.com/defaaryawar"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{ type: "spring", stiffness: 300, duration: 0.8 }}
-            >
-              <FaGithub size={24} className="text-color-secondary" />
-            </motion.a>
-          </div>
-        </motion.nav>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 1 }}
+          className="h-px bg-gradient-to-r from-transparent via-violet-500 to-transparent mb-8"
+        />
 
-        {/* Footer Copyright */}
-        <aside>
-          <p className="text-color-primary font-bold select-none">
-            Copyright © {new Date().getFullYear()} - All right reserved by Defaaryawar
-          </p>
-        </aside>
-      </footer>
-    </div>
+        <div className="flex flex-col items-center space-y-8">
+          {/* Navigation Links */}
+          <motion.nav
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-wrap justify-center gap-6 sm:gap-8"
+          >
+            <a href="#about" className="text-slate-400 hover:text-violet-400 transition-colors duration-300">
+              About
+            </a>
+            <a href="#skill" className="text-slate-400 hover:text-violet-400 transition-colors duration-300">
+              Skills
+            </a>
+            <a href="#project" className="text-slate-400 hover:text-violet-400 transition-colors duration-300">
+              Projects
+            </a>
+            <a href="#contact" className="text-slate-400 hover:text-violet-400 transition-colors duration-300">
+              Contact
+            </a>
+          </motion.nav>
+
+          {/* Social Media Icons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 20 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex gap-6 sm:gap-8"
+          >
+            {socialLinks.map(({ icon: Icon, href, color, platform }) => (
+              <motion.button
+                key={platform}
+                onClick={handleSocialClick(platform, href)}
+                className="group relative"
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <motion.div
+                  className="absolute -inset-2 bg-white/10 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  whileHover={{ scale: 1.2 }}
+                />
+                <Icon 
+                  size={24} 
+                  className="relative z-10 transition-transform duration-300"
+                  style={{ color }}
+                />
+              </motion.button>
+            ))}
+          </motion.div>
+
+          {/* Copyright */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: inView ? 1 : 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-center"
+          >
+            <p className="text-slate-400 font-medium">
+              Copyright © {new Date().getFullYear()} - All rights reserved by{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-400">
+                Defaaryawar
+              </span>
+            </p>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ width: 0 }}
+          animate={{ width: "100%" }}
+          transition={{ duration: 1 }}
+          className="h-px bg-gradient-to-r from-transparent via-violet-500 to-transparent mt-8"
+        />
+      </div>
+    </footer>
   );
 };
 
