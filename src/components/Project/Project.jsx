@@ -143,6 +143,13 @@ const Project = () => {
       title: 'Deflix',
       technologies: ['NextJS', 'React', 'Tailwind CSS', 'API', 'NestJS', 'PostgreSQL', 'CSS'],
     },
+    {
+      imageSrc: './images/nion-coffee.png',
+      imageAlt: 'Nion Coffee',
+      href: 'https://nioncoffee.store/',
+      title: 'Nion Coffee',
+      technologies: ['Vite', 'React', 'Tailwind CSS', 'API', 'ExpressJS', 'PostgreSQL', 'CSS'],
+    },
   ];
 
   // Calculate grid columns based on number of items
