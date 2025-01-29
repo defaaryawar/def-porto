@@ -150,6 +150,13 @@ const Project = () => {
       title: 'Nion Coffee',
       technologies: ['Vite', 'React', 'Tailwind CSS', 'API', 'ExpressJS', 'PostgreSQL', 'CSS'],
     },
+    {
+      imageSrc: './images/jaya-mandiri.png',
+      imageAlt: 'Jaya Mandiri',
+      href: 'https://nioncoffee.store/',
+      title: 'Jaya Mandiri',
+      technologies: ['Vite', 'React', 'Tailwind CSS', 'CSS'],
+    },
   ];
 
   // Calculate grid columns based on number of items
