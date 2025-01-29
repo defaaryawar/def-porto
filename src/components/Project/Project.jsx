@@ -153,7 +153,7 @@ const Project = () => {
     {
       imageSrc: './images/jaya-mandiri.png',
       imageAlt: 'Jaya Mandiri',
-      href: 'https://nioncoffee.store/',
+      href: 'https://jaya-mandiri.vercel.app/', 
       title: 'Jaya Mandiri',
       technologies: ['Vite', 'React', 'Tailwind CSS', 'CSS'],
     },
