@@ -179,7 +179,7 @@ const Project = () => {
             transition={{ duration: 1 }}
             className="h-px bg-gradient-to-r from-transparent via-violet-500 to-transparent mb-8"
           />
-
+          {/*ini komentar */}
           <h2 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-400 mb-3">
             Featured Projects
           </h2>
