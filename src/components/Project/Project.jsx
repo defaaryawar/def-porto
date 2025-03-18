@@ -48,9 +48,95 @@ const useInView = () => {
   return { inView, ref };
 };
 
+// Laptop frame component
+const LaptopFrame = ({ children }) => {
+  return (
+    <div className="laptop-frame relative mx-auto w-full max-w-md">
+      <div className="laptop-top bg-gray-800 rounded-t-xl pt-2 px-2">
+        <div className="laptop-screen bg-slate-900 rounded-t-lg overflow-hidden">
+          {children}
+        </div>
+      </div>
+      <div className="laptop-bottom bg-gray-800 h-3 rounded-b-xl relative">
+        <div className="laptop-touchpad absolute left-1/2 transform -translate-x-1/2 w-10 h-1 bg-gray-700 rounded-full -top-1"></div>
+      </div>
+    </div>
+  );
+};
+
+// Particles background effect
+const ParticlesBackground = () => {
+  const canvasRef = useRef(null);
+  
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    const particles = [];
+    const particleCount = 30;
+    
+    // Set canvas size
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+    
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    
+    // Create particles
+    for (let i = 0; i < particleCount; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2 + 1,
+        color: `rgba(${Math.floor(Math.random() * 100 + 150)}, ${Math.floor(Math.random() * 100 + 150)}, 255, ${Math.random() * 0.5 + 0.1})`,
+        vx: Math.random() * 0.5 - 0.25,
+        vy: Math.random() * 0.5 - 0.25
+      });
+    }
+    
+    // Animate particles
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      particles.forEach(particle => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        
+        // Bounce off edges
+        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+        
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
+        ctx.fillStyle = particle.color;
+        ctx.fill();
+      });
+      
+      requestAnimationFrame(animate);
+    };
+    
+    animate();
+    
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+    };
+  }, []);
+  
+  return (
+    <canvas 
+      ref={canvasRef} 
+      className="absolute inset-0 w-full h-full pointer-events-none z-0"
+    />
+  );
+};
+
 const ProjectCard = ({ project, index, inView, isMobile }) => {
   const imageLoadingRef = useRef(null);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     if (imageLoadingRef.current?.complete) {
@@ -72,33 +158,61 @@ const ProjectCard = ({ project, index, inView, isMobile }) => {
       variants={cardVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      className="relative bg-slate-900/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl border border-slate-800/50"
+      className="relative bg-slate-900/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-xl border border-slate-800/50 group"
       whileHover={!isMobile ? { y: -5, transition: { duration: 0.2 } } : {}}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
     >
-      <div className="relative h-52 sm:h-64 overflow-hidden">
-        <motion.img
-          ref={imageLoadingRef}
-          src={project.imageSrc}
-          alt={project.imageAlt}
-          onLoad={() => setImageLoaded(true)}
-          className={`w-full h-full object-cover transition-all duration-500 ${!isMobile ? 'group-hover:scale-105' : ''
-            } ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent" />
+      <div className="relative overflow-hidden">
+        <LaptopFrame>
+          <div className="relative h-52 sm:h-64 overflow-hidden">
+            <motion.img
+              ref={imageLoadingRef}
+              src={project.imageSrc}
+              alt={project.imageAlt}
+              onLoad={() => setImageLoaded(true)}
+              className={`w-full h-full object-cover transition-all duration-500 ${
+                !isMobile ? 'group-hover:scale-105' : ''
+              } ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+              animate={{
+                scale: isHovered ? 1.05 : 1,
+                transition: { duration: 0.5 }
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent" />
+          </div>
+        </LaptopFrame>
       </div>
 
       <div className="p-6 relative z-10">
-        <h3 className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-300 mb-3">
+        <motion.h3 
+          className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-300 mb-3"
+          animate={{
+            x: isHovered ? 5 : 0,
+            transition: { duration: 0.3 }
+          }}
+        >
           {project.title}
-        </h3>
+        </motion.h3>
         <div className="flex flex-wrap gap-2 mb-5">
           {project.technologies.map((tech, techIndex) => (
-            <span
+            <motion.span
               key={techIndex}
               className="px-3 py-1 text-xs sm:text-sm bg-indigo-500/20 text-indigo-300 rounded-full border border-indigo-500/30"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ 
+                opacity: inView ? 1 : 0, 
+                y: inView ? 0 : 20,
+                transition: { duration: 0.3, delay: 0.1 * techIndex + 0.3 }
+              }}
+              whileHover={{ 
+                scale: 1.05, 
+                backgroundColor: "rgba(99, 102, 241, 0.3)",
+                transition: { duration: 0.2 } 
+              }}
             >
               {tech}
-            </span>
+            </motion.span>
           ))}
         </div>
 
@@ -118,8 +232,23 @@ const ProjectCard = ({ project, index, inView, isMobile }) => {
         </motion.div>
       </div>
 
-      <div className={`absolute inset-0 pointer-events-none bg-gradient-to-r from-violet-600/5 to-indigo-600/5 opacity-0 transition-opacity duration-300 ${!isMobile ? 'group-hover:opacity-100' : ''
-        }`} />
+      <motion.div 
+        className="absolute inset-0 pointer-events-none bg-gradient-to-r from-violet-600/5 to-indigo-600/5"
+        animate={{
+          opacity: isHovered ? 0.2 : 0,
+          transition: { duration: 0.3 }
+        }}
+      />
+      
+      {/* Glow effect on hover */}
+      <motion.div 
+        className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-violet-600 to-indigo-600 opacity-0 blur-xl"
+        animate={{
+          opacity: isHovered ? 0.15 : 0,
+          scale: isHovered ? 1.05 : 1,
+          transition: { duration: 0.5 }
+        }}
+      />
     </motion.div>
   );
 };
@@ -127,6 +256,11 @@ const ProjectCard = ({ project, index, inView, isMobile }) => {
 const Project = () => {
   const isMobile = useIsMobile();
   const { inView, ref } = useInView();
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   const callouts = [
     {
@@ -147,7 +281,7 @@ const Project = () => {
       imageSrc: './images/nion-coffee.png',
       imageAlt: 'Nion Coffee',
       href: 'https://nioncoffee.store/',
-      title: 'Nion Coffee',
+      title: 'Nion Coffee', 
       technologies: ['Vite', 'React', 'Tailwind CSS', 'API', 'ExpressJS', 'PostgreSQL', 'CSS'],
     },
     {
@@ -165,8 +299,11 @@ const Project = () => {
     "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
 
   return (
-    <div className="min-h-screen py-12 sm:py-20">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-12 sm:py-20 relative overflow-hidden">
+      {/* Particles background */}
+      <ParticlesBackground />
+      
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -179,16 +316,54 @@ const Project = () => {
             transition={{ duration: 1 }}
             className="h-px bg-gradient-to-r from-transparent via-violet-500 to-transparent mb-8"
           />
-          {/*ini komentar */}
-          <h2 className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-400 mb-3">
+          
+          <motion.h2 
+            className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-400 mb-3"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
             Featured Projects
-          </h2>
-          <p className="text-slate-400 text-base sm:text-lg">Discover some of my recent work</p>
+          </motion.h2>
+          
+          <motion.p 
+            className="text-slate-400 text-base sm:text-lg"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Discover some of my recent work
+          </motion.p>
+          
+          {/* 3D rotating cube decoration */}
+          <motion.div 
+            className="absolute right-8 top-0 w-16 h-16 md:w-24 md:h-24 opacity-30"
+            animate={{ 
+              rotateY: [0, 360],
+              rotateX: [0, 360],
+            }}
+            transition={{ 
+              duration: 20, 
+              repeat: Infinity,
+              ease: "linear" 
+            }}
+            style={{ 
+              transformStyle: "preserve-3d", 
+              transform: "translateZ(0)" 
+            }}
+          >
+            <div className="absolute inset-0 border-2 border-indigo-500 transform rotateX(0) rotateY(0)" />
+            <div className="absolute inset-0 border-2 border-violet-500 transform rotateX(90deg) rotateY(0)" />
+            <div className="absolute inset-0 border-2 border-indigo-500 transform rotateX(0) rotateY(90deg)" />
+          </motion.div>
         </motion.div>
 
-        <div
+        <motion.div
           ref={ref}
           className={`grid ${gridCols} gap-6 sm:gap-8`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isLoaded ? 1 : 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
         >
           {callouts.map((project, index) => (
             <ProjectCard
@@ -199,7 +374,38 @@ const Project = () => {
               isMobile={isMobile}
             />
           ))}
-        </div>
+        </motion.div>
+        
+        {/* Floating elements decoration */}
+        {!isMobile && (
+          <>
+            <motion.div
+              className="absolute left-0 bottom-20 w-12 h-12 opacity-20 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 blur-md"
+              animate={{ 
+                y: [0, -20, 0],
+                opacity: [0.2, 0.5, 0.2]
+              }}
+              transition={{ 
+                duration: 5, 
+                repeat: Infinity,
+                ease: "easeInOut" 
+              }}
+            />
+            <motion.div
+              className="absolute right-20 bottom-40 w-8 h-8 opacity-20 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 blur-md"
+              animate={{ 
+                y: [0, -15, 0],
+                opacity: [0.2, 0.4, 0.2]
+              }}
+              transition={{ 
+                duration: 7, 
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1 
+              }}
+            />
+          </>
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect, useRef } from "react";
 
 const useInView = () => {
@@ -152,12 +152,14 @@ const Statistik = () => {
         })
     };
 
+    const { scrollYProgress } = useScroll();
+    const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1.1]);
+    const opacity = useTransform(scrollYProgress, [0, 0.5], [0.2, 1]);
+
     return (
         <section className="min-h-screen flex flex-col items-center justify-center py-24 bg-transparent">
             <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.2 }}
+                style={{ scale, opacity }}
                 className="w-full max-w-7xl space-y-24"
             >
                 <motion.div

@@ -49,3 +49,26 @@ html, body {
 .progress-bar::-moz-progress-bar {
   background-color: #DAA520; /* Warna progress bar di Firefox */
 }
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgba(139, 92, 246, 0.5), rgba(99, 102, 241, 0.5));
+  pointer-events: none;
+  animation: float 15s infinite ease-in-out;
+}
+
+@keyframes float {
+  0%, 100% {
+      transform: translateY(0) translateX(0);
+  }
+  25% {
+      transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+      transform: translateY(0) translateX(20px);
+  }
+  75% {
+      transform: translateY(20px) translateX(10px);
+  }
+}
