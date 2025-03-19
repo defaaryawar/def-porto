@@ -40,7 +40,7 @@ const HeroSection = () => {
             />
 
             <div className="container mx-auto px-4 md:px-6 py-8 md:py-12 lg:py-20">
-                <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 relative z-10">
+                <div className="flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-20 relative">
                     {/* Profile Image Section */}
                     <motion.div
                         className="relative group w-full max-w-[300px] sm:max-w-[350px] lg:max-w-[400px]"

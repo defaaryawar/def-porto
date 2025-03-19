@@ -6,6 +6,7 @@ import About from "@/components/About/About";
 import Statistik from "@/components/Statistik/Statistik";
 import Project from "@/components/Project/Project";
 import ChatWithMe from "@/components/ChatWithMe/ChatWithMe";
+import Certificate from "@/components/Certificate/Certificate";
 
 export default function Home() {
   return (
@@ -15,7 +16,7 @@ export default function Home() {
       </div>
 
       {/* Content container */}
-      <div className="relative z-10">
+      <div className="relative">
         {/* Hero Section */}
         <section id="hero" className="relative">
           <HeroSection />
@@ -29,6 +30,11 @@ export default function Home() {
         {/* Statistik Section */}
         <section id="skill" className="relative">
           <Statistik />
+        </section>
+
+        {/* Statistik Section */}
+        <section id="certificate" className="relative z-51">
+          <Certificate />
         </section>
 
         {/* Project Section */}

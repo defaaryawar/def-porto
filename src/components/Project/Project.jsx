@@ -299,7 +299,7 @@ const Project = () => {
     "grid-cols-1 md:grid-cols-2 lg:grid-cols-3";
 
   return (
-    <div className="min-h-screen py-12 sm:py-20 relative overflow-hidden">
+    <div className="py-12 sm:py-20 relative overflow-hidden">
       {/* Particles background */}
       <ParticlesBackground />
       
