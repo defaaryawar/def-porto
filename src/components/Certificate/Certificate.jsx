@@ -254,7 +254,7 @@ const Certificate = () => {
                                         className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-900 to-slate-900/90 backdrop-blur-sm z-20 p-4 flex flex-col justify-end"
                                         initial={{ height: "0%", opacity: 0 }}
                                         whileHover={{ height: "70%", opacity: 1 }}
-                                        animate={isMobile ? { height: "25%", opacity: 1 } : { height: "0%", opacity: 0 }}
+                                        animate={isMobile ? { height: "70%", opacity: 1 } : { height: "0%", opacity: 0 }}
                                         transition={{ duration: 0.3, ease: "easeInOut" }}
                                     >
                                         <h4 className="text-lg font-bold text-violet-300 mb-2">{cert.title}</h4>
